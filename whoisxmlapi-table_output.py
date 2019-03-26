@@ -8,15 +8,15 @@ start = time.time()
 
 api_key = 'your_api_key'
 
+
 url_1 = 'https://www.whoisxmlapi.com/whoisserver/WhoisService'
 
 #to store the final URL's to be queried against whoisxml
 api_urls = []
 
-
 #creating a table to display the output
 table = PrettyTable()
-table.field_names = ["Domain_Name", "Domain_Age"]
+table.field_names = ["Domain_Name", "Domain_Age","Contact_Email"]
 
 #get the list of inouts from user and store it as a list
 user_input = input("Enter the list of domains separated by commas: ")
@@ -33,11 +33,17 @@ for words in api_urls:
     json_data = requests.get(words).json()
     domain = json_data['WhoisRecord']['domainName']
     age = json_data['WhoisRecord']['estimatedDomainAge']
-    #print(domain,age)
-    table.add_row([domain, age])   #adding the rows to the table
+    print(domain,age)
+    try:
+        email = json_data['WhoisRecord']['contactEmail']
+        #print("Contact Email: ", email)
+        table.add_row([domain, age, email])
+    except:
+        email = "No email listed"
+        table.add_row([domain, age, email])
+    
 
- #printing the table
-print(str(table) )
+print (str(table))
 
 
 end = time.time()
