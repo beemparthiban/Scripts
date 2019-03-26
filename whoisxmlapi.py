@@ -33,9 +33,10 @@ for words in api_urls:
     json_data = requests.get(words).json()
     domain = json_data['WhoisRecord']['domainName']
     age = json_data['WhoisRecord']['estimatedDomainAge']
-    print(domain,age)
-    table.add_row([domain, age])
+    #print(domain,age)
+    table.add_row([domain, age])   #adding the rows to the table
 
+ #printing the table
 print(str(table) )
 
 
