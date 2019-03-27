@@ -7,7 +7,7 @@ from collections import Counter
 #setting up the URL variables
 url = 'https://farsight-tlb01.threatstream.com/lookup/rdata/ip/'
 hdr = {
-    'X-API-Key': 'b45d5a328be1bcceb01ecd7834beb8c30df5789b73ed58e75ba9374504415813','Accept': 'application/json'
+    'X-API-Key': 'your_api_key','Accept': 'application/json'
 }
 #getting user inout
 ip = input("Enter the IP adress: ")
