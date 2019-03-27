@@ -7,7 +7,7 @@ from collections import Counter
 #setting up the URL variables
 url = 'https://farsight-tlb01.threatstream.com/lookup/rdata/ip/'
 hdr = {
-    'X-API-Key': 'your_api_key','Accept': 'application/json'
+    'X-API-Key': 'b45d5a328be1bcceb01ecd7834beb8c30df5789b73ed58e75ba9374504415813','Accept': 'application/json'
 }
 #getting user inout
 ip = input("Enter the IP adress: ")
@@ -28,7 +28,7 @@ json_data = [json.loads(row) for row in result]
 rrnames = list(map(lambda d: d['rrname'].rstrip('.'), json_data))
 
 #print the output
-print (rrnames)
+#print (rrnames)
 
 #using counter to count the items in the list and using the tldextract module to sp
 c = Counter(tldextract.extract(tld).suffix for tld in rrnames)
@@ -39,10 +39,18 @@ c = Counter(tldextract.extract(tld).suffix for tld in rrnames)
     #print(values)
 
 #creating a table to display the output
-table = PrettyTable()
-table.field_names = ["TLD_name", "Count"]
+tld_table = PrettyTable()
+tld_table.field_names = ["TLD_name", "Count"]
 
 #adding values to the table and sorting the table using most_common() inbuilt function
 for key, val in c.most_common():
-   table.add_row([key, val])
-print (table)
+   tld_table.add_row([key, val])
+print (tld_table)
+
+#table for printing the domains
+domain_table = PrettyTable()
+domain_table.field_names = ["Domain_Name"]
+
+for dom in rrnames:
+    domain_table.add_row([dom])
+print(domain_table)
