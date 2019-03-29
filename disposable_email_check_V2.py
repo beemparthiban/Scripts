@@ -13,13 +13,13 @@ user_input = input("Enter the list of email addresses separated by commas: ")
 input_list = user_input.split(',')
 emails = [str(x.strip()) for x in input_list]
 
-# to store the final URL's to be queried against kickbox
+# to store the final URL's to be queried against kickbox. using for loop to iterate through list of emails in the 'emails' list.
 api_urls = [url + email for email in emails]
 
 # get the list of URL's from the list and query against the kickbox
 results = [requests.get(url).json().get('disposable') for url in api_urls]
 
-# using another for loop to print the result and corresponding domain
+# using zip to print the result and corresponding domain from two for loops
 for email, result in zip(emails, results):
     table.add_row([email, result])   # adding result to the table
     #print(z,result)
