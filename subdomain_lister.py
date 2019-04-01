@@ -29,7 +29,7 @@ json_data = [json.loads(row) for row in result]
 rrnames = list(map(lambda d: d['rrname'].rstrip('.'), json_data))
 
 # assign the unique values 
-unique_subdomains = list(set(rrnames))
+unique_subdomains = sorted(list(set(rrnames)))
 
 
 #table for printing the domains
